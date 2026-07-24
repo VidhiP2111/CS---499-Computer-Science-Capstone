@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const dbURI = "mongodb+srv://pvidhi818_db_user:uH6qL0tWZtaGz2Xm@cluster0.nwb6kd6.mongodb.net/travlr-app?appName=Cluster0";
+const dbURI = 'mongodb+srv://pvidhi818_db_user:uH6qL0tWZtaGz2Xm@cluster0.nwb6kd6.mongodb.net/travlr?appName=Cluster0';
 
 mongoose.connect(dbURI);
 

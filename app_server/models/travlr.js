@@ -21,16 +21,8 @@ const tripSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  image: {
-  type: String,
-  required: true
-},
-
-description: {
-  type: String,
-  required: true,
-  minlength: 10
-}
+  image: String,
+  description: String
 });
 
 mongoose.model('trips', tripSchema);

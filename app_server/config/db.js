@@ -1,11 +1,14 @@
 const mongoose = require('mongoose');
-require('dotenv').config();
 
-const dbURI = process.env.MONGO_URI;
-mongoose.connect(dbURI);
+const dbURI = 'mongodb+srv://pvidhi818_db_user:uH6qL0tWZtaGz2Xm@cluster0.nwb6kd6.mongodb.net/travlr?appName=Cluster0';
+
+mongoose.connect(dbURI, {
+  tls: true,
+  tlsInsecure: true
+});
 
 mongoose.connection.on('connected', () => {
-  console.log('Mongoose connected successfully');
+  console.log(`Mongoose connected to ${dbURI}`);
 });
 
 mongoose.connection.on('error', err => {
