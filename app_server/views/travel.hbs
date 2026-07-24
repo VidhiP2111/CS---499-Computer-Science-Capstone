@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{title}}</title>
+</head>
+<body>
+
+<h1>Travlr Getaways</h1>
+
+{{#each trips}}
+<div>
+    <h2>{{this.name}}</h2>
+
+    <p><strong>Length:</strong> {{this.length}}</p>
+
+    <p><strong>Starting Point:</strong> {{this.start}}</p>
+
+    <p><strong>Resort:</strong> {{this.resort}}</p>
+
+    <p><strong>Price:</strong> {{this.perPerson}}</p>
+
+    <p>{{this.description}}</p>
+
+    <hr>
+</div>
+{{/each}}
+
+</body>
+</html>
