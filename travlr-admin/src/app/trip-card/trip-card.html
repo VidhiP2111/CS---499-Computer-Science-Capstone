@@ -1,0 +1,15 @@
+<div class="col-md-4">
+  <div class="card mb-4">
+    <img [src]="trip.image" class="card-img-top" alt="{{ trip.name }}">
+    <div class="card-body">
+      <h5 class="card-title">{{ trip.name }}</h5>
+      <p class="card-text">{{ trip.description }}</p>
+      <p><strong>Length:</strong> {{ trip.length }}</p>
+      <p><strong>Start:</strong> {{ trip.start }}</p>
+      <p><strong>Resort:</strong> {{ trip.resort }}</p>
+      <p><strong>Price:</strong> {{ trip.perPerson }}</p>
+      <button class="btn btn-warning me-2" (click)="editTrip(trip.name)">Edit</button>
+      <button class="btn btn-danger" (click)="onDeleteTrip(trip.name)">Delete</button>
+    </div>
+  </div>
+</div>
