@@ -3,9 +3,40 @@ const handleError = require('../../app_server/utils/errorHandler');
 
 const Trip = mongoose.model('trips');
 
+
+// Updating tripsList to perform enhanced search with page, limit and skip
 const tripsList = async (req, res) => {
   try {
-    const trips = await Trip.find({});
+    let page = parseInt(req.query.page) || 1;
+    let limit = parseInt(req.query.limit) || 10;
+
+    //Checking page & limit before performing full search
+    if (page < 1) page = 1;
+    if (limit < 1) limit = 10;
+
+    let skip = (page - 1) * limit;
+
+    let query = {};
+
+    if (req.query.start) {
+      query.start = req.query.start;
+    }
+
+    if (req.query.maxPrice && !isNaN(Number(req.query.maxPrice))) {
+      query.perPerson = { $lte: Number(req.query.maxPrice) };
+    }
+
+    let sortOptions = {};
+    if (req.query.sort) {
+      let sortOrder = req.query.order === 'desc' ? -1 : 1;
+      sortOptions[req.query.sort] = sortOrder;
+    }
+
+    const trips = await Trip.find(query)
+      .sort(sortOptions)
+      .skip(skip)
+      .limit(limit)
+      .lean();
 
     if (!trips || trips.length === 0) {
       return res.status(404).json({

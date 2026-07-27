@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Trip } from './models/trip';
 
@@ -11,8 +11,30 @@ export class TripDataService {
 
   constructor(private http: HttpClient) { }
 
-  getTrips(): Observable<Trip[]> {
-    return this.http.get<Trip[]>(`${this.apiBaseUrl}trips`);
+  //Handling parameters page, limit, start & maxPrixe
+  getTrips(page?: number, limit?: number, start?: string, maxPrice?: number, sort?: string, order?: string): Observable<Trip[]> {
+    let params = new HttpParams();
+
+    if (page) {
+      params = params.set('page', page);
+    }
+    if (limit) {
+      params = params.set('limit', limit);
+    }
+    if (start) {
+      params = params.set('start', start);
+    }
+    if (maxPrice) {
+      params = params.set('maxPrice', maxPrice);
+    }
+    if (sort) {
+      params = params.set('sort', sort);
+    }
+    if (order) {
+      params = params.set('order', order);
+    }
+
+    return this.http.get<Trip[]>(`${this.apiBaseUrl}trips`, { params });
   }
 
   getTrip(tripCode: string): Observable<Trip> {

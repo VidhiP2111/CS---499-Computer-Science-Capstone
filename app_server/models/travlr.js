@@ -1,25 +1,30 @@
 const mongoose = require('mongoose');
 
+//Updating variable type and setting index so it can be used for filter & sort
 const tripSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true
+    required: true,
+    index: true,
+    unique: true
   },
   length: {
-    type: String,
+    type: Number,
     required: true
   },
   start: {
     type: String,
-    required: true
+    required: true,
+    index: true
   },
   resort: {
     type: String,
     required: true
   },
   perPerson: {
-    type: String,
-    required: true
+    type: Number,
+    required: true,
+    index: true
   },
   image: {
   type: String,

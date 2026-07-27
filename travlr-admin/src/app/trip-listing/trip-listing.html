@@ -3,6 +3,13 @@
     <div class="col-12">
       <h1>Trip Listings</h1>
       <a routerLink="/add-trip" class="btn btn-primary mb-3">Add Trip</a>
+
+      <div class="mb-3">
+        <input type="text" placeholder="Start location" [(ngModel)]="startFilter" name="startFilter">
+        <input type="number" placeholder="Max price" [(ngModel)]="maxPriceFilter" name="maxPriceFilter">
+        <button class="btn btn-secondary" (click)="applyFilters()">Search</button>
+      </div>
+
       <p>{{ message }}</p>
     </div>
   </div>
@@ -12,5 +19,10 @@
       [trip]="trip"
       (deleteTrip)="getTrips()">
     </app-trip-card>
+  </div>
+  <div class="row">
+    <button class="btn btn-outline-secondary" (click)="prevPage()">Previous</button>
+    <span>Page {{ page }}</span>
+    <button class="btn btn-outline-secondary" (click)="nextPage()">Next</button>
   </div>
 </div>
