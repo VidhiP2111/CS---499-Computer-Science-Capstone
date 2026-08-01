@@ -16,7 +16,10 @@ const tripsList = async (req, res) => {
 
     let skip = (page - 1) * limit;
 
-    let query = {};
+    //excluding soft-deleted trips from list results
+    let query = { 
+      deleted: false
+     };
 
     if (req.query.start) {
       query.start = req.query.start;
@@ -53,9 +56,13 @@ const tripsList = async (req, res) => {
 
 const tripsFindCode = async (req, res) => {
   try {
+
+    //As this is a read-only query lean() will help to improve the perforrmance 
     const trip = await Trip.findOne({
-      name: req.params.tripName
-    });
+      name: req.params.tripName,
+      //excluding soft-deleted trips from single lookup
+      deleted: false
+    }).lean();
 
     if (!trip) {
       return res.status(404).json({
@@ -112,7 +119,9 @@ const tripsUpdateTrip = async (req, res) => {
 
     const trip = await Trip.findOneAndUpdate(
       {
-        name: req.params.tripName
+        name: req.params.tripName,
+        //This is to prevent edits to a trip that is already been soft deleted
+        deleted: false
       },
       {
         name: req.body.name,
@@ -124,7 +133,9 @@ const tripsUpdateTrip = async (req, res) => {
         description: req.body.description
       },
       {
-        new: true
+        new: true,
+        // Enabling validators on update since Mongoose skips them by default
+        runValidators: true
       }
     );
 
@@ -147,9 +158,19 @@ const tripsUpdateTrip = async (req, res) => {
 const tripsDeleteTrip = async (req, res) => {
   try {
 
+    //marking it as deleted instead of removing the record 
+    //this can be helpful to restore it later
     const trip = await Trip.findOneAndDelete({
-      name: req.params.tripName
-    });
+      name: req.params.tripName,
+        deleted: false
+      },
+      {
+        deleted: true,
+        deletedAt: Date.now()
+      },
+      {
+        new: true
+      });
 
 
     if (!trip) {
