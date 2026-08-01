@@ -25,6 +25,12 @@ app.use((req, res, next) => {
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//logging every request that hits the server
+app.use((req, res, next) => {
+  console.log(new Date().toISOString(), req.method, req.originalUrl);
+  next();
+});
+
 app.use('/api', apiRoutes);
 app.use('/', travelRoutes);
 

@@ -105,6 +105,9 @@ const tripsAddTrip = async (req, res) => {
       description: req.body.description
     });
 
+    //logging so it shows when trips get created
+    console.log(new Date().toISOString(), 'Trip created:', trip.name);
+
 
     return res.status(201).json(trip);
 
@@ -146,6 +149,8 @@ const tripsUpdateTrip = async (req, res) => {
       });
     }
 
+    //This is to see when trips get updated
+    console.log(new Date().toISOString(), 'Trip updated:', trip.name);
 
     return res.status(200).json(trip);
 
@@ -160,7 +165,7 @@ const tripsDeleteTrip = async (req, res) => {
 
     //marking it as deleted instead of removing the record 
     //this can be helpful to restore it later
-    const trip = await Trip.findOneAndDelete({
+    const trip = await Trip.findOneAndUpdate({
         name: req.params.tripName,
         deleted: false
       },
@@ -178,6 +183,9 @@ const tripsDeleteTrip = async (req, res) => {
         message: 'Trip not found'
       });
     }
+
+    //logging when trips get soft-deleted
+    console.log(new Date().toISOString(), 'Trip soft-deleted:', trip.name);
 
 
     return res.status(200).json({
