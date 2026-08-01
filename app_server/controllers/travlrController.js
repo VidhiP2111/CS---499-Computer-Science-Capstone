@@ -3,7 +3,14 @@ const Trip = mongoose.model('trips');
 
 const travel = async (req, res) => {
   try {
-    const trips = await Trip.find({});
+
+    //This is to hide soft delete trips
+    const trips = await Trip.find({
+       deleted: false 
+      }
+      //As this is a read-only query lean() will help to improve the perforrmance 
+    ).lean();
+
     res.render('travel', {
       title: 'Travlr Getaways',
       trips
