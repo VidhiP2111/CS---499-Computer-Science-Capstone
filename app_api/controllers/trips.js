@@ -161,7 +161,7 @@ const tripsDeleteTrip = async (req, res) => {
     //marking it as deleted instead of removing the record 
     //this can be helpful to restore it later
     const trip = await Trip.findOneAndDelete({
-      name: req.params.tripName,
+        name: req.params.tripName,
         deleted: false
       },
       {
