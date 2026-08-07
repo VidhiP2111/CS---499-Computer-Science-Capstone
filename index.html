@@ -1,38 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Simple Website</title>
-    <!-- Link your external stylesheet here -->
+    <title>CS 499 Capstone ePortfolio | SNHU</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
     <header>
-        <h1>Welcome to My Website</h1>
-        <nav>
-            <a href="#">Home</a> |
-            <a href="#">About</a> |
-            <a href="#">Contact</a>
-        </nav>
+        <div class="container">
+            <h1>Computer Science Capstone ePortfolio</h1>
+            <p class="subtitle">SNHU CS 499 | Professional Self-Assessment</p>
+        </div>
     </header>
 
-    <main>
-        <section>
-            <h2>About This Page</h2>
-            <p>This is a simple, semantic HTML5 template starter file.</p>
+    <main class="container">
+        <!-- Section 1: Introduction -->
+        <section class="card">
+            <h2>1. Introduction & Academic Journey</h2>
+            <p>Throughout my time at Southern New Hampshire University, my journey through the Computer Science program has transformed my approach to software engineering. Entering the program with a foundational interest in technology, I have evolved into a methodical developer focused on writing clean, secure, and highly optimized code.</p>
+            <p>My career goals have shifted from simply making programs "work" to engineering software that adheres strictly to industry-standard architectural patterns, prioritizing scalability and long-term maintainability.</p>
+        </section>
+
+        <!-- Section 2: Program Reflection -->
+        <section class="card">
+            <h2>2. Program Reflection & Course Outcomes</h2>
+            <p>The CS curriculum has equipped me with core competencies required in modern development teams. Engaging in code reviews, interpreting rigorous project rubrics, and designing comprehensive software architectures have prepared me to foster a collaborative development culture.</p>
+            <p>By mastering agile mindsets and cross-functional communication, I am positioned to enter the industry as a highly employable asset capable of delivering immediate business value.</p>
+        </section>
+
+        <!-- Section 3: Artifact Enhancements -->
+        <section class="card">
+            <h2>3. Final Portfolio Summary & Artifacts</h2>
+            <p>This ePortfolio showcases three distinct artifact enhancements, validating my technical proficiency across the core pillars of computer science:</p>
+            
+            <div class="artifact">
+                <h3>Category 1: Software Design and Engineering</h3>
+                <p><strong>Artifact Name:</strong> [Insert Past Project Name, e.g., Grazioso Salvare Application]</p>
+                <p><strong>Enhancement Reflection:</strong> I enhanced this artifact by refactoring the codebase to improve modularity and encapsulation. By implementing creational design patterns, I decoupled system dependencies, making the system easier to test and extend in future iterations.</p>
+            </div>
+
+            <div class="artifact">
+                <h3>Category 2: Algorithms and Data Structures</h3>
+                <p><strong>Artifact Name:</strong> [Insert Past Project Name, e.g., Vector Sorting Algorithm]</p>
+                <p><strong>Enhancement Reflection:</strong> For this enhancement, I optimized the search and sorting operations by transitioning from an O(N²) bubble sort to an O(N log N) quicksort implementation. This change dramatically reduced execution time and optimized memory management under heavy datasets.</p>
+            </div>
+
+            <div class="artifact">
+                <h3>Category 3: Databases</h3>
+                <p><strong>Artifact Name:</strong> [Insert Past Project Name, e.g., Dashboard Database REST API]</p>
+                <p><strong>Enhancement Reflection:</strong> I strengthened data security and integrity by sanitizing input fields, enforcing parameterized queries, and implementing indexed lookups. These updates prevented SQL injection vulnerabilities and maximized query processing speeds.</p>
+            </div>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2026 My Website</p>
+        <div class="container">
+            <p>&copy; 2026 SNHU Computer Science Capstone. All Rights Reserved.</p>
+        </div>
     </footer>
 
-    <!-- Link your external JavaScript file here -->
-    <script src="script.js"></script>
 </body>
-
 </html>
